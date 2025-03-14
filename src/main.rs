@@ -38,6 +38,14 @@ fn main() {
 
     grid.push(Cell {
         x: 2 * pixel_size as i32,
+        y: 1 * pixel_size as i32,
+        ctype: CellType::Alive,
+        food: 0,
+        last_move: 0
+    });
+
+    grid.push(Cell {
+        x: 2 * pixel_size as i32,
         y: 3 * pixel_size as i32,
         ctype: CellType::Food,
         food: 0,
@@ -107,6 +115,19 @@ fn main() {
                 grid[food_cell_index].y == grid[cell_index].y {
                     if delta_time == 30 || delta_time == 60 || delta_time == 90 {
                         grid[cell_index].food += 1;
+                    }
+                } else if grid[food_cell_index].ctype == CellType::Alive &&
+                grid[food_cell_index].x == grid[cell_index].x &&
+                grid[food_cell_index].y == grid[cell_index].y &&
+                food_cell_index != cell_index {
+                    if delta_time == 30 || delta_time == 60 || delta_time == 90 {
+                        grid.push(Cell {
+                            x: cell_index as i32,
+                            y: cell_index as i32 + 80,
+                            ctype: CellType::Alive,
+                            food: 0,
+                            last_move: 0
+                        });
                     }
                 }
 
