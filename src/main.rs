@@ -57,53 +57,28 @@ fn main() {
             let mut cell_index = 0;
             while cell_index < grid.len() {
                 if grid[cell_index].ctype == CellType::Alive {
-                    let mut food_cell_index = 0;
-                    while food_cell_index < grid.len() {
-                        if grid[food_cell_index].ctype == CellType::Food {
-                            if grid[food_cell_index].x <= grid[cell_index].x + 5 {
-                                if delta_time == 30 || delta_time == 60 || delta_time == 90 {
-                                    grid[cell_index].x += pixel_size as i32;
-                                }
-                            } else if grid[food_cell_index].x >= grid[cell_index].x - 5 {
-                                if delta_time == 30 || delta_time == 60 || delta_time == 90 {
-                                    grid[cell_index].x -= pixel_size as i32;
-                                }
-                            } else if grid[food_cell_index].y <= grid[cell_index].y + 5 {
-                                if delta_time == 30 || delta_time == 60 || delta_time == 90 {
-                                    grid[cell_index].y += pixel_size as i32;
-                                }
-                            } else if grid[food_cell_index].y >= grid[cell_index].y - 5 {
-                                if delta_time == 30 || delta_time == 60 || delta_time == 90 {
-                                    grid[cell_index].y -= pixel_size as i32;
-                                }
-                            } else {
-                                let direction = rand::rng().random_range(1..4);
-                
-                                match direction {
-                                    1 => {
-                                        grid[cell_index].x += pixel_size as i32;
-                                        grid[cell_index].last_move = 1
-                                    }
-                
-                                    2 => {
-                                        grid[cell_index].x -= pixel_size as i32;
-                                        grid[cell_index].last_move = 2
-                                    }
-                
-                                    3 => {
-                                        grid[cell_index].y += pixel_size as i32;
-                                        grid[cell_index].last_move = 3
-                                    }
-                
-                                    _ => {
-                                        grid[cell_index].y -= pixel_size as i32;
-                                        grid[cell_index].last_move = 4
-                                    }
-                                }
-                            }
+                    let direction = rand::rng().random_range(1..4);
+    
+                    match direction {
+                        1 => {
+                            grid[cell_index].x += pixel_size as i32;
+                            grid[cell_index].last_move = 1
                         }
-        
-                        food_cell_index += 1
+    
+                        2 => {
+                            grid[cell_index].x -= pixel_size as i32;
+                            grid[cell_index].last_move = 2
+                        }
+    
+                        3 => {
+                            grid[cell_index].y += pixel_size as i32;
+                            grid[cell_index].last_move = 3
+                        }
+    
+                        _ => {
+                            grid[cell_index].y -= pixel_size as i32;
+                            grid[cell_index].last_move = 4
+                        }
                     }
                 }
     
