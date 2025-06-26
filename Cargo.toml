@@ -4,5 +4,5 @@ version = "1.0.0"
 edition = "2024"
 
 [dependencies]
-rand = "0.9.0"
-raylib = "5.0.2"
+rand = "0.9.1"
+raylib = "5.5.1"
